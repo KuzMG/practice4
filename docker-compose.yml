@@ -1,19 +1,24 @@
-version: "3"
+version: '3'
 
 services:
   docker-server-clswk:
-    build .
-    enviroment:
-      - DATABASE_URL=jdbs:postgresq://cats-db-clswk:5432/cats_db_clswk
-      - SERVER_PORT=8090		
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=jdbc:postgresql://cats-db-clswk:5432/cats_db_clswk​​​​
+      - SERVER_PORT=8090
     ports:
       - "8080:8090"
     depends_on:
-      - cats-db-clswk
+      cats-db-clswk:
+        condition: service_started
       
   cats-db-clswk:
     image: postgres:latest 
-    enviroment:
+    environment:
       - ​​​​POSTGRES_DB=cats_db_clswk​​​​
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/create_db.sql
