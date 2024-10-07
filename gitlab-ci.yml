@@ -1,0 +1,22 @@
+stages:
+  - build
+  - deploy
+  
+build-app:
+  stage: build
+  image: maven
+  tags: 
+    - docker-test
+  script:
+    - mvn clean package -Dskiptests=true
+  artifacts:
+    paths:
+      - target/*.jar
+      
+deploy-app:
+  stage: deploy
+  image: docker
+  tags:
+    - docker-test
+  script:
+    - docker-compose up -d
