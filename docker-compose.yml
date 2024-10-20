@@ -4,7 +4,7 @@ services:
   docker-server-clswk:
     build:
       context: .
-      dockerfile: Dockerfile
+      target: deploy
     environment:
       - DATABASE_URL=jdbc:postgresql://cats-db-clswk:5432/cats_db_clswk​​​​
       - SERVER_PORT=8090
