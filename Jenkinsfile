@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+      MAVEN_ARGS=" -e clean install"
+  }
     stages {
         stage('build') {
             steps {
