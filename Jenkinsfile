@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'mvn clean package'
+               withMaven(maven: 'MAVEN_ENV') {
+            		sh "mvn ${MAVEN_ARGS}"
+        	}
             }
         }
         stage('docker-compose start') {
