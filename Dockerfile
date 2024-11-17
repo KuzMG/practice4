@@ -1,4 +1,4 @@
 FROM openjdk
 COPY . .
-CMD ["java", "-jar", "target/docker-server-clswk-1.0.0.jar"]
+CMD ["ls"]
 EXPOSE 8090
