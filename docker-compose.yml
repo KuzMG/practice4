@@ -9,7 +9,7 @@ services:
       - DATABASE_URL=jdbc:postgresql://cats-db-clswk:5432/postgres
       - SERVER_PORT=8090
     ports:
-      - "8080:8090"
+      - "8090:8090"
     depends_on:
       cats-db-clswk:
         condition: service_started
